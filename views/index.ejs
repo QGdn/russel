@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <title>Document</title>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenue sur le site </h1>
+        <h1>Bienvenue sur le site du port de plaisance de Russel</h1>
     </header>
+    <main>
+        <form method="post" action="/files" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Connexion</legend><br>
+                <label for="email"> Email</label>
+                <input type="email" name="email"><br><br>
+                <label for="password"> Mot de passe</label>
+                <input type="password" name="password"><br><br>
+                <input type="text" name="userId" value="6775f603fe7e719596f9706e" hidden><!-- ID de l'utilisateur existant la BDD mongo-->
+                <input type="submit" value="Envoyer">
+            </fieldset>
+        </form>
+    </main>
 </body>
 </html>
