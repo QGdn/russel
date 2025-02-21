@@ -8,6 +8,6 @@ router.get('/', async (req, res) => {
   res.render('dashboard');
 });
 
-router.use('/users', userRoute);
+router.use('/login', userRoute);
 
 module.exports = router;
