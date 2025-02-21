@@ -10,6 +10,6 @@ router.get('/:id', private.checkJWT, service.getById);
 router.put('/add', service.add);
 router.patch('/:id', private.checkJWT, service.update);
 router.delete('/:id', private.checkJWT, service.delete);
-router.post('/authenticate', service.authenticate);
+router.post('/login', service.authenticate);
 
 module.exports = router;

@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   res.render('index');
 });
 
-router.use('/users', userRoute);
+router.use('/login', userRoute);
 router.use('/dashboard', dashboardRoute);
 
 module.exports = router;
