@@ -25,9 +25,9 @@ exports.authenticate = async (req, res, next) => {
                     }
                 );
                 res.header('Authorization', 'Bearer ' + token);
-
+                console.log('authentification_reussie');
                 return res.redirect('/dashboard');
-                return console.log('authentification_reussie');
+                
                 }
 
                 return res.status(403).json('Mot de passe incorrect');
@@ -112,7 +112,8 @@ exports.delete = async (req, res, next) => {
     }
 }
 
-exports.logout = (req, res, next) => {
+exports.logout = async (req, res, next) => {
     res.header('Authorization', '');
+    console.log('deconnexion_ok');
     return res.redirect('/');
 }
