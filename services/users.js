@@ -111,3 +111,8 @@ exports.delete = async (req, res, next) => {
         return res.status(501).json(error);
     }
 }
+
+exports.logout = (req, res, next) => {
+    res.header('Authorization', '');
+    return res.redirect('/');
+}
