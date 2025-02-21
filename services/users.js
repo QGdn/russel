@@ -30,10 +30,10 @@ exports.authenticate = async (req, res, next) => {
                 return console.log('authentification_reussie');
                 }
 
-                return res.status(403).json('echec_authentification');
+                return res.status(403).json('Mot de passe incorrect');
             });
         } else {
-            return res.status(404).json('utilisateur_introuvable');
+            return res.status(404).json('Utilisateur introuvable');
         }
     } catch (error) {
         return res.status(501).json(error);
