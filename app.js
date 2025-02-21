@@ -2,18 +2,32 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const { initClientConnection } = require('./db/mongo');
+
 const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
+
+initClientConnection()
+    .then(() => {
+        console.log('Connexion MongoDB effectuée avec succès');
+    })
+    .catch((err) => {
+        console.error('Erreur de connexion MongoDB :', err);
+        process.exit(1);
+    });
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('css'));
 
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/dashboard', dashboardRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({ name: 'API', version: '1.0', status: 404, message: 'introuvable' });
