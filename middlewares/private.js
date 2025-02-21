@@ -24,11 +24,12 @@ exports.checkJWT = async (req, res, next) => {
                 }
             );
 
-            res.header('Athorization', 'Bearer ' + newToken);
+            res.header('Authorization', 'Bearer ' + newToken);
             next();
             }
         });
     } else {
-        return res.status(401).json('token_requis');
+        // res.status(401).json('token_requis');
+        return res.redirect('/');
     }
 }
