@@ -24,12 +24,18 @@ exports.authenticate = async (req, res, next) => {
                         expiresIn: expireIn
                     }
                 );
+
                 res.header('Authorization', 'Bearer ' + token);
-                console.log('authentification_reussie');
+                res.cookie('token', 'Bearer ' + token, {httpOnly: true});
                 return res.redirect('/dashboard');
+                // return res.status(200).json({
+                //     message: 'authentification_reussie',
+                //     token: 'Bearer ' + token,
+                // })
                 
                 }
-
+                
+                console.log('Mot de passe incorrect');
                 return res.status(403).json('Mot de passe incorrect');
             });
         } else {
@@ -40,11 +46,11 @@ exports.authenticate = async (req, res, next) => {
     }
 }
 
-exports.getById = async (req, res, next) => {
-    const id = req.params.id
+exports.getByEmail = async (req, res, next) => {
+    const email = req.params.email;
 
     try {
-        let user = await User.findById(id);
+        let user = await User.find(email);
 
         if (user) {
             return res.status(200).json(user);
@@ -113,7 +119,7 @@ exports.delete = async (req, res, next) => {
 }
 
 exports.logout = async (req, res, next) => {
-    res.header('Authorization', '');
+    res.clearCookie('token');
     console.log('deconnexion_ok');
     return res.redirect('/');
 }

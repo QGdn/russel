@@ -17,6 +17,25 @@ form div {
   padding: 20px;
 }
 
-form button {
-  margin: 0% 40%;
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 33%;
+  align-items: center;
+  padding: 1%;
+  margin: 100px 10px;
+}
+
+.loginButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.loginButtons button {
+  margin: 10px;
 }
