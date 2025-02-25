@@ -3,10 +3,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { initClientConnection } = require('./db/mongo');
+const cors = require('cors');
+
+cors({ origin: '*' });
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
 
@@ -26,8 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/dashboard', dashboardRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({ name: 'API', version: '1.0', status: 404, message: 'introuvable' });
@@ -37,6 +36,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Erreur serveur !');
 });
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

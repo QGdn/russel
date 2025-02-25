@@ -22,7 +22,9 @@ const User = new Schema({
     },
     password: {
         type: String,
-        trim: true
+        trim: true,
+        required: [true, 'Le mot de passe est requis'],
+        minlength: [6, 'Le mot de passe doit contenir au moins 6 caractères']
     }
 }, {
     timestamps: true

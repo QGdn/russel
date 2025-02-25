@@ -6,11 +6,9 @@ const service = require('../services/users');
 const private = require('../middlewares/private');
 
 /* GET users listing. */
-router.get('/:id', private.checkJWT, service.getById);
-router.put('/add', service.add);
-router.patch('/:id', private.checkJWT, service.update);
-router.delete('/:id', private.checkJWT, service.delete);
-router.post('/login', service.authenticate);
-router.post('/logout', service.logout);
-
+router.get('/', private.checkJWT, service.getByEmail);
+router.get('/:email', private.checkJWT, service.getByEmail);
+router.post('/', service.add);
+router.put('/:email', service.add);
+router.delete('/:email', private.checkJWT, service.delete);
 module.exports = router;
